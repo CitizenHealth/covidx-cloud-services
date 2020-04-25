@@ -1,0 +1,82 @@
+# Humantiv Backend
+
+Cloud functions supporting the Humantiv app.
+
+## Prerequisites
+Install Firebase CLI
+
+```
+npm install -g firebase-tools
+```
+
+Login to the CovidX project Firebase console from CLI
+```
+firebase login
+```
+
+## Installation
+
+```
+cd functions
+yarn
+```
+## Deployment
+Install the firebase CLI:
+```
+npm install -g firebase-tools
+```
+Read the Google \[Get Started\](https://firebase.google.com/docs/functions/get-started) documentation.
+```
+firebase deploy --only functions
+```
+
+## Functions List
+**humanAPITokenExchange**:
+Exchanges a handshake with the Human API to get the user publicToken
+-  *Input*: Human API user sessionTokenObject.
+-  *Returns*: Human API user publicToken
+---
+**buildSlackNotification:**
+Triggered by Nevercode Humantiv app build. Posts to the slack channel *mobile_app_build*
+-  *Input*: Nevercode webhook post.
+-  *Returns*: ok
+---
+**sendWelcomeEmail:**
+Triggered by creation of a new user. Sends a welcome email to the user email address.
+-  *Input*:User login info.
+-  *Returns*: ok
+---
+**sendGoodbyeEmail:**
+Triggered by deleting a user account. Sends a goodbye email to the user email address.
+-  *Input*:User login info.
+-  *Returns*: ok
+---
+**sendInitialMedits:**
+Triggered by creation of a user account. Sends an initial amount of medits to the user.
+-  *Input*:User login info.
+-  *Returns*: ok
+---
+**setInitialHealthScore:**
+Triggered by creation of a user account. Creates a baseline health score for the user.
+-  *Input*:User login info.
+-  *Returns*: ok
+---
+**initializeAccount:**
+Triggered by creation of a user account. Initializes default data such as units and notifications.
+-  *Input*:User login info.
+-  *Returns*: ok
+---
+**sendMeditsNotification:**
+Triggered by the change of the medits number assigned to a user.
+-  *Input*:medits number.
+-  *Returns*: ok
+---
+**sendScoreNotification:**
+Triggered by the change of the score number assigned to a user. Only sent when score increases by a number >= 5% or decreases by a number >= 3%
+-  *Input*:score number.
+-  *Returns*: ok
+---
+**calculateLeaderboard:**
+Triggered by the change of the medit number assigned to a user. It modifies the leaderboard.
+-  *Input*:medit number.
+-  *Returns*: ok
