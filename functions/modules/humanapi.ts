@@ -51,8 +51,15 @@ request({
     callback(false, null);
         return;
   }
-  
-  console.log(result.body)
+  console.log("humanapi write succeeded");
+  //Send back publicToken to app
+  var responseJSON = {
+    expiresIn: result.body.expires_in,
+    humanId: result.body.human_id,
+    accessToken: result.body.session_token,
+  };
+  callback(true, responseJSON);
+  return 1;
 })
 };
 
