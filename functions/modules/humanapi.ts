@@ -42,17 +42,17 @@ request({
   method: "POST",
   json: true,
   body: requestBody
-}, (error: any, res: { statusCode: number; body: any; }, body: any) => {
+}, (error: any, result: { statusCode: number; body: any; }, body: any) => {
   if (error) {
     throw error;
   }
-  if (res.statusCode >= 400 ) {
+  if (result.statusCode >= 400 ) {
     console.error("Server returned error status");
     callback(false, null);
         return;
   }
   
-  console.log(res.body)
+  console.log(result.body)
 })
 };
 
